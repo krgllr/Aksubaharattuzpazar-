@@ -1,320 +1,58 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AKSU BAHARAT TUZ PAZARI</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Georgia, "Times New Roman", serif;
-      background: linear-gradient(180deg, #f8f1e4, #e8d2ae);
-      color: #4d2b12;
-      text-align: center;
-      overflow-x: hidden;
-    }
-
-    .container {
-      max-width: 1050px;
-      margin: 0 auto;
-      padding: 28px 18px 60px;
-      position: relative;
-    }
-
-    .hero {
-      position: relative;
-      background: rgba(255, 248, 236, 0.9);
-      border: 2px solid #d6a055;
-      border-radius: 28px;
-      box-shadow: 0 12px 30px rgba(90, 50, 10, 0.12);
-      padding: 26px 20px 42px;
-      overflow: hidden;
-    }
-
-    /* LOGOLAR */
-    .logo-main {
-      width: min(260px, 70vw);
-      display: block;
-      margin: 0 auto 10px;
-      mix-blend-mode: multiply;
-      filter: contrast(1.08) saturate(1.05) drop-shadow(0 3px 6px rgba(0,0,0,0.10));
-      opacity: 0.98;
-    }
-
-    .logo-corner {
-      position: absolute;
-      right: 18px;
-      bottom: 16px;
-      width: 90px;
-      mix-blend-mode: multiply;
-      filter: contrast(1.05) saturate(1.03);
-      opacity: 0.18;
-      pointer-events: none;
-    }
-
-    h1 {
-      margin: 10px 0 8px;
-      font-size: clamp(30px, 5.8vw, 58px);
-      color: #7f3d00;
-      text-shadow: 1px 1px 0 #fff4df;
-      letter-spacing: 1px;
-    }
-
-    .subtitle {
-      font-size: clamp(20px, 3vw, 30px);
-      font-weight: bold;
-      color: #b86b00;
-      margin-bottom: 10px;
-    }
-
-    .subtitle2 {
-      font-size: clamp(18px, 2.8vw, 25px);
-      color: #60320f;
-      font-weight: bold;
-      margin-bottom: 26px;
-    }
-
-    .info-button {
-      display: inline-block;
-      margin-top: 6px;
-      font-size: 22px;
-      font-weight: bold;
-      color: #8b4513;
-      text-decoration: underline;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .info-button:hover {
-      transform: scale(1.03);
-    }
-
-    .info-box {
-      display: none;
-      margin: 20px auto 0;
-      max-width: 760px;
-      background: #fff7ea;
-      border: 2px dashed #c98b2f;
-      border-radius: 18px;
-      padding: 20px;
-      line-height: 1.85;
-      font-size: 20px;
-      text-align: left;
-    }
-
-    .info-box.show {
-      display: block;
-    }
-
-    .label {
-      font-weight: bold;
-      color: #9e5000;
-    }
-
-    /* ANİMASYON */
-    .animation-area {
-      position: relative;
-      width: 290px;
-      height: 290px;
-      margin: 0 auto 10px;
-    }
-
-    .jar {
-      position: absolute;
-      top: 22px;
-      left: 50%;
-      width: 125px;
-      height: 148px;
-      transform: translateX(-50%) rotate(-18deg);
-      transform-origin: center center;
-      animation: tiltJar 3s linear infinite;
-    }
-
-    .jar-lid {
-      position: absolute;
-      top: 0;
-      left: 18px;
-      width: 88px;
-      height: 21px;
-      background: #9b5a1b;
-      border: 2px solid #6e3c0c;
-      border-radius: 10px 10px 6px 6px;
-    }
-
-    .jar-body {
-      position: absolute;
-      top: 19px;
-      left: 8px;
-      width: 108px;
-      height: 115px;
-      background: rgba(255,255,255,0.45);
-      border: 3px solid #aa6d30;
-      border-radius: 18px 18px 22px 22px;
-      overflow: hidden;
-      backdrop-filter: blur(2px);
-    }
-
-    .jar-spice {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 50%;
-      background: linear-gradient(180deg, #ca6c1e, #8c3f00);
-    }
-
-    .spice-flow {
-      position: absolute;
-      top: 120px;
-      left: 160px;
-      width: 18px;
-      height: 0;
-      background: linear-gradient(180deg, #c96b1d, #7a2f00);
-      border-radius: 10px;
-      transform: rotate(18deg);
-      transform-origin: top center;
-      animation: pourSpice 3s linear infinite;
-    }
-
-    .spice-pile {
-      position: absolute;
-      bottom: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 0 solid transparent;
-      border-right: 0 solid transparent;
-      border-bottom: 0 solid #984200;
-      animation: pileGrow 3s linear infinite;
-    }
-
-    .ground {
-      position: absolute;
-      bottom: 20px;
-      left: 25px;
-      right: 25px;
-      height: 6px;
-      background: #7b4a1d;
-      border-radius: 8px;
-    }
-
-    .loading-note {
-      font-size: 16px;
-      color: #8b5a2d;
-      margin: 0 0 10px;
-      font-style: italic;
-    }
-
-    @keyframes tiltJar {
-      0%   { transform: translateX(-50%) rotate(-18deg); }
-      20%  { transform: translateX(-50%) rotate(-18deg); }
-      35%  { transform: translateX(-50%) rotate(-42deg); }
-      75%  { transform: translateX(-50%) rotate(-42deg); }
-      100% { transform: translateX(-50%) rotate(-18deg); }
-    }
-
-    @keyframes pourSpice {
-      0%   { height: 0; opacity: 0; }
-      20%  { height: 0; opacity: 0; }
-      35%  { height: 88px; opacity: 1; }
-      75%  { height: 98px; opacity: 1; }
-      100% { height: 0; opacity: 0; }
-    }
-
-    @keyframes pileGrow {
-      0% {
-        border-left-width: 0;
-        border-right-width: 0;
-        border-bottom-width: 0;
-      }
-      20% {
-        border-left-width: 0;
-        border-right-width: 0;
-        border-bottom-width: 0;
-      }
-      35% {
-        border-left-width: 16px;
-        border-right-width: 16px;
-        border-bottom-width: 12px;
-      }
-      75% {
-        border-left-width: 36px;
-        border-right-width: 36px;
-        border-bottom-width: 28px;
-      }
-      100% {
-        border-left-width: 0;
-        border-right-width: 0;
-        border-bottom-width: 0;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .info-box {
-        font-size: 18px;
-      }
-
-      .info-button {
-        font-size: 18px;
-      }
-
-      .animation-area {
-        transform: scale(0.95);
-      }
-
-      .logo-corner {
-        width: 70px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aksu Baharat</title>
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:linear-gradient(#fff,#f3f3f3);
+  text-align:center;
+  color:#333;
+}
+.logo{
+  width:260px;
+  margin-top:40px;
+  mix-blend-mode:multiply;
+}
+.title{
+  font-size:32px;
+  font-weight:bold;
+  margin-top:20px;
+}
+.subtitle{
+  font-size:18px;
+  color:#666;
+  margin-top:10px;
+}
+.btn{
+  margin-top:40px;
+  padding:15px 25px;
+  font-size:18px;
+  background:#d32f2f;
+  color:white;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+}
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="hero">
-      <!-- ANA LOGO -->
-      <img src="aksu-logo.png" alt="Aksu Baharat Logo" class="logo-main">
 
-      <div class="animation-area">
-        <div class="jar">
-          <div class="jar-lid"></div>
-          <div class="jar-body">
-            <div class="jar-spice"></div>
-          </div>
-        </div>
+<img src="aksu-logo.png" class="logo" alt="Aksu Baharat Logo">
 
-        <div class="spice-flow"></div>
-        <div class="spice-pile"></div>
-        <div class="ground"></div>
-      </div>
+<div class="title">AKSU BAHARAT</div>
+<div class="subtitle">60 yıllık tecrübe ve kalite</div>
 
-      <div class="loading-note">İnterneti yavaş olan kişiler beklerken baharat dökülüyor...</div>
+<button class="btn" onclick="goInfo()">Bilgiler için tıklayınız</button>
 
-      <h1>AKSU BAHARAT TUZ PAZARI</h1>
-      <div class="subtitle">60 yıllık tecrübe ve kalite</div>
-      <div class="subtitle2">Toptan ve perakende satışlarımızla hizmetinizdeyiz</div>
+<script>
+function goInfo(){
+  window.location.href = "info.html";
+}
+</script>
 
-      <div class="info-button" onclick="toggleInfo()">Bilgiler için tıklayınız</div>
-
-      <div id="infoBox" class="info-box">
-        <div><span class="label">Adres:</span> Bursa Osmangazi Cumhuriyet Caddesi No 99 Taksim</div>
-        <div><span class="label">Konum:</span> Bursa Osmangazi Cumhuriyet Caddesi No 99 Taksim</div>
-        <div><span class="label">Telefon:</span> 0 0224 223 7703</div>
-      </div>
-
-      <!-- KÜÇÜK SİLİK LOGO -->
-      <img src="aksu-logo.png" alt="" class="logo-corner">
-    </div>
-  </div>
-
-  <script>
-    function toggleInfo() {
-      document.getElementById("infoBox").classList.toggle("show");
-    }
-  </script>
 </body>
 </html>
