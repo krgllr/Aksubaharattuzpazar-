@@ -1,58 +1,394 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aksu Baharat</title>
-<style>
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:linear-gradient(#fff,#f3f3f3);
-  text-align:center;
-  color:#333;
-}
-.logo{
-  width:260px;
-  margin-top:40px;
-  mix-blend-mode:multiply;
-}
-.title{
-  font-size:32px;
-  font-weight:bold;
-  margin-top:20px;
-}
-.subtitle{
-  font-size:18px;
-  color:#666;
-  margin-top:10px;
-}
-.btn{
-  margin-top:40px;
-  padding:15px 25px;
-  font-size:18px;
-  background:#d32f2f;
-  color:white;
-  border:none;
-  border-radius:12px;
-  cursor:pointer;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aksu Baharat Tuz Pazarı</title>
+  <meta name="description" content="Aksu Baharat Tuz Pazarı - 60 yıllık tecrübe ve kalite." />
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --bg:#f8f2ea;
+      --bg2:#efe0cd;
+      --card:#fffaf4;
+      --brown:#6f3b16;
+      --brown2:#9b5625;
+      --gold:#d9a24b;
+      --text:#4a2a16;
+      --muted:#7d5d47;
+      --shadow:0 14px 34px rgba(0,0,0,.12);
+    }
+
+    body{
+      font-family:Arial,sans-serif;
+      background:
+        radial-gradient(circle at top left, #fff8ef 0%, transparent 22%),
+        radial-gradient(circle at top right, #f6e7d2 0%, transparent 18%),
+        linear-gradient(180deg,var(--bg),var(--bg2));
+      color:var(--text);
+    }
+
+    header{
+      background:linear-gradient(135deg,var(--brown),var(--brown2));
+      color:#fff;
+      position:sticky;
+      top:0;
+      z-index:20;
+      box-shadow:0 8px 20px rgba(0,0,0,.16);
+    }
+
+    .top{
+      max-width:1200px;
+      margin:auto;
+      padding:16px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .logo{
+      width:64px;
+      height:64px;
+      border-radius:16px;
+      background:#fff7ef;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--brown);
+      font-weight:900;
+      font-size:20px;
+      box-shadow:0 8px 18px rgba(0,0,0,.14);
+      overflow:hidden;
+    }
+
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      padding:6px;
+      display:none;
+    }
+
+    .brand h1{
+      font-size:clamp(24px,3vw,36px);
+      line-height:1;
+      margin-bottom:4px;
+    }
+
+    .brand p{
+      font-size:13px;
+      opacity:.92;
+      font-weight:700;
+    }
+
+    nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    nav a, .btn{
+      text-decoration:none;
+      border:none;
+      cursor:pointer;
+      border-radius:12px;
+      padding:11px 16px;
+      font-weight:800;
+      font-size:15px;
+      transition:.18s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    nav a:hover, .btn:hover{
+      transform:translateY(-1px);
+    }
+
+    .btn-light{
+      background:#fff;
+      color:var(--brown);
+    }
+
+    .btn-gold{
+      background:linear-gradient(135deg,#f0ba63,#d98b2b);
+      color:#2e1809;
+    }
+
+    .hero{
+      max-width:1200px;
+      margin:28px auto 0;
+      padding:0 18px 20px;
+    }
+
+    .hero-box{
+      background:rgba(255,250,244,.92);
+      border-radius:30px;
+      box-shadow:var(--shadow);
+      padding:36px 28px;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:24px;
+      align-items:center;
+    }
+
+    .hero-left h2{
+      font-size:clamp(30px,5vw,58px);
+      line-height:1.05;
+      color:var(--brown);
+      margin-bottom:16px;
+    }
+
+    .hero-left h2 span{
+      color:var(--gold);
+    }
+
+    .hero-left p{
+      font-size:18px;
+      line-height:1.8;
+      color:#694731;
+      margin-bottom:22px;
+    }
+
+    .hero-list{
+      display:grid;
+      gap:12px;
+      margin-bottom:22px;
+    }
+
+    .hero-item{
+      background:#fff;
+      border:1px solid #ecdcc8;
+      border-radius:16px;
+      padding:14px 16px;
+      font-weight:800;
+      color:#5b3315;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .hero-right{
+      background:linear-gradient(135deg,#f0dfc0,#e0b57b);
+      border-radius:24px;
+      min-height:320px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .feature-card{
+      width:100%;
+      max-width:380px;
+      background:rgba(255,255,255,.88);
+      border-radius:24px;
+      box-shadow:0 12px 24px rgba(0,0,0,.10);
+      padding:26px;
+      text-align:center;
+    }
+
+    .feature-card h3{
+      color:var(--brown);
+      font-size:28px;
+      margin-bottom:10px;
+    }
+
+    .feature-card p{
+      color:#6f523e;
+      line-height:1.8;
+      font-size:16px;
+    }
+
+    .section{
+      max-width:1200px;
+      margin:0 auto;
+      padding:28px 18px;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:clamp(26px,4vw,42px);
+      color:var(--brown);
+      margin-bottom:10px;
+    }
+
+    .section-sub{
+      text-align:center;
+      color:var(--muted);
+      margin-bottom:24px;
+      line-height:1.7;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:18px;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:22px;
+    }
+
+    .card h3{
+      color:var(--brown);
+      font-size:22px;
+      margin-bottom:10px;
+    }
+
+    .card p, .card a{
+      color:#684834;
+      line-height:1.8;
+      text-decoration:none;
+      font-weight:700;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px 20px 40px;
+      color:#7c5f49;
+      font-weight:700;
+    }
+
+    @media (max-width: 900px){
+      .hero-box{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<img src="aksu-logo.png" class="logo" alt="Aksu Baharat Logo">
+  <header>
+    <div class="top">
+      <div class="brand">
+        <div class="logo" id="logoBox">
+          <img id="logoImg" src="logo.png" alt="Aksu Baharat Logosu">
+          <span id="logoText">AB</span>
+        </div>
+        <div>
+          <h1>Aksu Baharat Tuz Pazarı</h1>
+          <p>60 yıllık tecrübe • kalite • güven</p>
+        </div>
+      </div>
 
-<div class="title">AKSU BAHARAT</div>
-<div class="subtitle">60 yıllık tecrübe ve kalite</div>
+      <nav>
+        <a class="btn-light" href="#hakkimizda">Hakkımızda</a>
+        <a class="btn-light" href="#iletisim">İletişim</a>
+        <a class="btn-gold" href="https://www.google.com/maps?q=Bursa+Osmangazi+Cumhuriyet+Caddesi+No+99" target="_blank" rel="noopener">Konumu Aç</a>
+      </nav>
+    </div>
+  </header>
 
-<button class="btn" onclick="goInfo()">Bilgiler için tıklayınız</button>
+  <section class="hero">
+    <div class="hero-box">
+      <div class="hero-left">
+        <h2><span>60 yıllık tecrübe</span> ile baharat ustalığı</h2>
+        <p>
+          Aksu Baharat Tuz Pazarı olarak yılların birikimiyle kaliteli baharat, tuz ve seçkin ürünleri müşterilerimizle buluşturuyoruz.
+          Toptan ve perakende satışlarımızla hizmetinizdeyiz.
+        </p>
 
-<script>
-function goInfo(){
-  window.location.href = "info.html";
-}
-</script>
+        <div class="hero-list">
+          <div class="hero-item">Kaliteli ürün, güvenilir hizmet</div>
+          <div class="hero-item">Baharat ustası dokunuşuyla seçilmiş ürünler</div>
+          <div class="hero-item">Toptan ve perakende satış</div>
+        </div>
 
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#iletisim">Bilgiler için tıklayınız</a>
+          <a class="btn btn-light" href="tel:+902242237703">0 0224 223 7703</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="feature-card">
+          <h3>Aksu Baharat</h3>
+          <p>
+            Gelenekten gelen bilgi, güçlü esnaflık anlayışı ve özenle seçilen ürünlerle
+            müşterilerimize kalite sunuyoruz.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="hakkimizda">
+    <h2 class="section-title">Hakkımızda</h2>
+    <div class="section-sub">
+      Kalite, güven ve tecrübeyi aynı adreste buluşturuyoruz.
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Tecrübe</h3>
+        <p>60 yıllık tecrübemizle müşterilerimize güvenilir ve kaliteli hizmet sunuyoruz.</p>
+      </div>
+      <div class="card">
+        <h3>Kalite</h3>
+        <p>Baharat, tuz ve seçkin ürünleri özenle seçiyor, taze ve kaliteli şekilde sunuyoruz.</p>
+      </div>
+      <div class="card">
+        <h3>Hizmet</h3>
+        <p>Toptan ve perakende satışlarımızla ihtiyaçlara uygun çözümler sağlıyoruz.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="iletisim">
+    <h2 class="section-title">İletişim</h2>
+    <div class="section-sub">
+      Bize telefonla ulaşabilir, konumu haritada açabilirsiniz.
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Telefon</h3>
+        <a href="tel:+902242237703">0 0224 223 7703</a>
+      </div>
+      <div class="card">
+        <h3>Adres</h3>
+        <p>Bursa Osmangazi Cumhuriyet Caddesi No: 99</p>
+      </div>
+      <div class="card">
+        <h3>Konum</h3>
+        <a href="https://www.google.com/maps?q=Bursa+Osmangazi+Cumhuriyet+Caddesi+No+99" target="_blank" rel="noopener">Google Maps'te Aç</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Aksu Baharat Tuz Pazarı • kalite • güven • tecrübe
+  </footer>
+
+  <script>
+    const logoImg = document.getElementById("logoImg");
+    const logoText = document.getElementById("logoText");
+
+    logoImg.addEventListener("load", () => {
+      logoImg.style.display = "block";
+      logoText.style.display = "none";
+    });
+
+    logoImg.addEventListener("error", () => {
+      logoImg.style.display = "none";
+      logoText.style.display = "inline";
+    });
+  </script>
 </body>
 </html>
